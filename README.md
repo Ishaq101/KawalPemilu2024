@@ -102,7 +102,10 @@
     </ul>
   </div>
 
-  <h2>Debugging</h2>
-  <p>If you encounter "element not found" errors when elements are present on the website, try modifying the `scroll_down_constant` variable or the sleep time in specific code blocks.</p>
+  <h2 id="others">Others</h2>
+  <ul>
+    <li>If you encounter "element not found" errors when elements are present on the website, try modifying the `scroll_down_constant` variable or the sleep time in specific code blocks.</li>
+    <li>Please be carefull, `kawalpemilu.csv` in this directory is unfinished but it is real scraped data. I recommend to start your own data scraping.</li>
+  </ul>
 </body>
 </html>
