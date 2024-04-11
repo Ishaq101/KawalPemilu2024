@@ -1,13 +1,13 @@
 ## Instruction
 
 ### Requirements
-- I recommend to create a new python virtual environment using 
+- I recommend to create a new python virtual environment using \n
 ```python -m venv <your-env-name>```
-- After your virtual env is created, you could activate it using 
+- After your virtual env is created, you could activate it using \n
 ```<your-env-name>\Scripts\activate```
-- Once you are using your virtual environment, install the requirement with
+- Once you are using your virtual environment, install the requirement with \n
 ```pip install -r requirements.txt```
-- Please make sure your internet is stable
+- Please make sure your internet is stable \n
 - Info: my env using python 3.11
 
 ### Start Scraping
