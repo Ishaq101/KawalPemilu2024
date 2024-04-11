@@ -47,7 +47,7 @@
 </head> -->
 <body>
   <h1>Instructions</h1>
-
+  <img src="kawalpemilu.png" alt="kawalpemilu_web_image">
   <h2>Requirements</h2>
   <ul>
     <li>Create a new Python virtual environment using:</li>
