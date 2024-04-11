@@ -1,56 +1,108 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructions</title>
+  <style>
+    body {
+      font-family: verdana, sans-serif;
+      line-height: 1.5;
+    }
+    h1, h2 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+    }
+    ul {
+      list-style: disc;
+      padding-left: 1.5em;
+    }
+    li {
+      margin-bottom: 0.25em;
+    }
+    code {
+      font-family: monospace;
+      padding: 0.25em;
+      background-color: #eee;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 0.5em;
+      border: 1px solid #ddd;
+    }
+    .info {
+      font-style: italic;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
 <body>
-<h1>Instruction</h1>
+  <h1>Instructions</h1>
 
-<h2>Requirements</h2>
+  <h2>Requirements</h2>
+  <ul>
+    <li>Create a new Python virtual environment using:</li>
+    <li><code>python -m venv (your-env-name)</code></li>
+    <li>Activate the virtual environment:</li>
+    <li><code>(your-env-name)\Scripts\activate</code> (Windows)</li>
+    <li>Install requirements with:</li>
+    <li><code>pip install -r requirements.txt</code></li>
+    <li>Ensure a stable internet connection.</li>
+  </ul>
 
-<ul>
-    <li>I recommend to create a new python virtual environment using <br> 
-    <code>python -m venv (your-env-name)<code></li>
-    <li>After your virtual env is created, you could activate it using <br>
-    <code>(your-env-name)\Scripts\activate</code></li>
-    <li>Once you are using your virtual environment, install the requirement with <br>
-    <code>pip install -r requirements.txt</code></li>
-    <li>Please make sure your internet is stable</li>
-    <li>Info: my env using python 3.11</li>
-</ul>
+  <h2 id="start-scraping">Start Scraping</h2>
+  <ul>
+    <li>Run the scraping script:</li>
+    <li><code>python scraper.py</code></li>
+  </ul>
 
-<h2>Start Scraping</h2>
-<ul>
-<li>You can start scraping with this simple code <br> 
-<code>python scraper.py</code></li>
-<li>Info: If the code is stopped in middle of scraping, just check what is last row in your kawalpemilu.csv then modify variables last_prov_id,last_kab_id,last_kec_id,last_kel_id to where you want to start. Remember these variables based on location ordering for every location (like Province,Kabupaten,Kecamatan,Kelurahan) and start from 1 numbering. <br>example: if the running code is stopped, check your last data in kawalpemilu.csv. Here is example of last scraped data</li>
-<table>
-<tr>
-    <th>prov_name</th>
-    <th>prov_id</th>
-    <th>kab_name</th>
-    <th>kab_id</th>
-    <th>kec_name</th>
-    <th>kec_id</th>
-    <th>kel_name</th>
-    <th>kel_id</th>
-    <th>...</th>
-</tr>
-<tr>
-    <td>ACEH</td>
-    <td>1</td>
-    <td>ACEH BARAT DAYA</td>
-    <td>2</td>
-    <td>LEMBAH SABIL</td>
-    <td>5</td>
-    <td>GEULANGGANG BATEE</td>
-    <td>3</td>
-    <td>...</td>
-</tr>
-</table>
-then the variable will be <br>
-last_prov_id = 1 <br>
-last_kab_id = 2 <br>
-last_kec_id = 5 <br>
-last_kel_id = 4 <br>
-</ul>
-<h2>Debugging</h2>
-<span>If you are facing error like element not found, while it is actually appeared in website, you could modify the variable scroll_down_constant or the sleep time in particular block of code.</span>
+  <div class="info">
+    <h4>Resuming a stopped scrape</h4>
+    <p>If the code stops mid-scrape, check the last row in your `kawalpemilu.csv` file. Modify the variables `last_prov_id`, `last_kab_id`, `last_kec_id`, and `last_kel_id` to the desired starting point. Remember these variables correspond to the location order (Province, Kabupaten, Kecamatan, Kelurahan) and start numbering from 1.</p>
+    <p>Here's an example: If the last scraped data in `kawalpemilu.csv` is:</p>
+    <table>
+      <tr>
+        <th>prov_name</th>
+        <th>prov_id</th>
+        <th>kab_name</th>
+        <th>kab_id</th>
+        <th>kec_name</th>
+        <th>kec_id</th>
+        <th>kel_name</th>
+        <th>kel_id</th>
+        <th>...</th>
+      </tr>
+      <tr>
+        <td>ACEH</td>
+        <td>1</td>
+        <td>ACEH BARAT DAYA</td>
+        <td>2</td>
+        <td>LEMBAH SABIL</td>
+        <td>5</td>
+        <td>GEULANGGANG BATEE</td>
+        <td>3</td>
+        <td>...</td>
+      </tr>
+    </table>
+    <p>Then the variables would be:</p>
+    <ul>
+      <li><code>last_prov_id = 1</code></li>
+      <li><code>last_kab_id = 2</code></li>
+      <li><code>last_kec_id = 5</code></li>
+      <li><code>last_kel_id = 4</code></li>
+    </ul>
+  </div>
+
+  <h2>Debugging</h2>
+  <p>If you encounter "element not found" errors when elements are present on the website, try modifying the `scroll_down_constant` variable or the sleep time in specific code blocks.</p>
 </body>
 </html>
