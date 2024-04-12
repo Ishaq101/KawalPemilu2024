@@ -1,6 +1,7 @@
 import re
 import time
 import pandas as pd
+import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -32,34 +33,30 @@ def get_table_data(prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,ke
             is_missing_value = [True for r in row if '-' in r][0] # True
         except:
             is_missing_value = False
+        if is_missing_value==False:
+            paslon1 = row[1].split(' ')[1]
+            paslon1 = int(paslon1.replace(',',''))
+            paslon1_perc = row[1].split(' ')[0]
 
-        if ~is_missing_value:
-            try:
-                paslon1 = row[1].split(' ')[1]
-                paslon1 = int(paslon1.replace(',',''))
-                paslon1_perc = row[1].split(' ')[0]
+            paslon2 = row[2].split(' ')[1]
+            paslon2 = int(paslon2.replace(',',''))
+            paslon2_perc = row[2].split(' ')[0]
 
-                paslon2 = row[2].split(' ')[1]
-                paslon2 = int(paslon2.replace(',',''))
-                paslon2_perc = row[2].split(' ')[0]
+            paslon3 = row[3].split(' ')[1]
+            paslon3 = int(paslon3.replace(',',''))
+            paslon3_perc = row[3].split(' ')[0]
 
-                paslon3 = row[3].split(' ')[1]
-                paslon3 = int(paslon3.replace(',',''))
-                paslon3_perc = row[3].split(' ')[0]
+            tot_tps_foto_approved_kawal_pemilu = row[4].split(' ')[1].split('/')[0]
+            tot_tps_foto_approved_kawal_pemilu = int(tot_tps_foto_approved_kawal_pemilu.replace(',',''))
 
-                tot_tps_foto_approved_kawal_pemilu = row[4].split(' ')[1].split('/')[0]
-                tot_tps_foto_approved_kawal_pemilu = int(tot_tps_foto_approved_kawal_pemilu.replace(',',''))
+            tot_tps = row[4].split(' ')[1].split('/')[2]
+            tot_tps = int(tot_tps.replace(',',''))
 
-                tot_tps = row[4].split(' ')[1].split('/')[2]
-                tot_tps = int(tot_tps.replace(',',''))
-
-                tps_coverage_perc = row[4].split(' ')[0]
-                # tot_tps_foto_sirekap_to_kawal_pemilu = row[4].split(' ')[1].split('/')[1]
-                row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
-                vote_data.append(row_data)
-                print(row_data)
-            except:
-                print(row_data)
+            tps_coverage_perc = row[4].split(' ')[0]
+            # tot_tps_foto_sirekap_to_kawal_pemilu = row[4].split(' ')[1].split('/')[1]
+            row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
+            vote_data.append(row_data)
+            print(row_data,"is_missing_value:",is_missing_value)
         else:
             paslon1 = None
             paslon1_perc = None
@@ -68,12 +65,12 @@ def get_table_data(prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,ke
             paslon3 = None
             paslon3_perc = None
             tot_tps_foto_approved_kawal_pemilu = None
-            tot_tps = None
+            tot_tps = row[4].split(' ')[1].split('/')[2]
+            tot_tps = int(tot_tps.replace(',',''))
             tps_coverage_perc = None
-            province_id = i
             row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
             vote_data.append(row_data)
-            print(row_data)
+            print(row_data,"is_missing_value:",is_missing_value)
     else:
         # scrolling down
         try:
@@ -81,33 +78,30 @@ def get_table_data(prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,ke
         except:
             is_missing_value = False
 
-        if ~is_missing_value:
-            try:
-                paslon1 = row[1].split(' ')[1]
-                paslon1 = int(paslon1.replace(',',''))
-                paslon1_perc = row[1].split(' ')[0]
+        if is_missing_value==False:
+            paslon1 = row[1].split(' ')[1]
+            paslon1 = int(paslon1.replace(',',''))
+            paslon1_perc = row[1].split(' ')[0]
 
-                paslon2 = row[2].split(' ')[1]
-                paslon2 = int(paslon2.replace(',',''))
-                paslon2_perc = row[2].split(' ')[0]
+            paslon2 = row[2].split(' ')[1]
+            paslon2 = int(paslon2.replace(',',''))
+            paslon2_perc = row[2].split(' ')[0]
 
-                paslon3 = row[3].split(' ')[1]
-                paslon3 = int(paslon3.replace(',',''))
-                paslon3_perc = row[3].split(' ')[0]
+            paslon3 = row[3].split(' ')[1]
+            paslon3 = int(paslon3.replace(',',''))
+            paslon3_perc = row[3].split(' ')[0]
 
-                tot_tps_foto_approved_kawal_pemilu = row[4].split(' ')[1].split('/')[0]
-                tot_tps_foto_approved_kawal_pemilu = int(tot_tps_foto_approved_kawal_pemilu.replace(',',''))
+            tot_tps_foto_approved_kawal_pemilu = row[4].split(' ')[1].split('/')[0]
+            tot_tps_foto_approved_kawal_pemilu = int(tot_tps_foto_approved_kawal_pemilu.replace(',',''))
 
-                tot_tps = row[4].split(' ')[1].split('/')[2]
-                tot_tps = int(tot_tps.replace(',',''))
+            tot_tps = row[4].split(' ')[1].split('/')[2]
+            tot_tps = int(tot_tps.replace(',',''))
 
-                tps_coverage_perc = row[4].split(' ')[0]
-                # tot_tps_foto_sirekap_to_kawal_pemilu = row[4].split(' ')[1].split('/')[1]
-                row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
-                vote_data.append(row_data)
-                print(row_data)
-            except:
-                print(row_data)
+            tps_coverage_perc = row[4].split(' ')[0]
+            # tot_tps_foto_sirekap_to_kawal_pemilu = row[4].split(' ')[1].split('/')[1]
+            row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
+            vote_data.append(row_data)
+            print(row_data,"is_missing_value:",is_missing_value)
         else:
             paslon1 = None
             paslon1_perc = None
@@ -116,11 +110,12 @@ def get_table_data(prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,ke
             paslon3 = None
             paslon3_perc = None
             tot_tps_foto_approved_kawal_pemilu = None
-            tot_tps = None
+            tot_tps = row[4].split(' ')[1].split('/')[2]
+            tot_tps = int(tot_tps.replace(',',''))
             tps_coverage_perc = None
             row_data = [prov_name,prov_id,kab_name,kab_id,kec_name,kec_id,kel_name,kel_id,paslon1,paslon1_perc,paslon2,paslon2_perc,paslon3,paslon3_perc,tot_tps_foto_approved_kawal_pemilu,tot_tps,tps_coverage_perc]
             vote_data.append(row_data)
-            print(row_data)
+            print(row_data,"is_missing_value:",is_missing_value)
     return vote_data
 
 province_table_xpath = '/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr'
@@ -254,10 +249,7 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
                                 wait.until(EC.element_to_be_clickable((By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id}]/td')))
                                 row = driver.find_elements(By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id}]/td')
                                 row = [r.text.replace('\n',' ') for r in row]          
-                                try:          
-                                    get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=kecamatan_name,kec_id=kecamatan_id,kel_name=kelurahan_name,kel_id=kelurahan_id,row=row,vote_data=vote_data,scroll=False)
-                                except:
-                                    print('ERROR:',row)
+                                get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=kecamatan_name,kec_id=kecamatan_id,kel_name=kelurahan_name,kel_id=kelurahan_id,row=row,vote_data=vote_data,scroll=False)
                             else:
                                 scroll_down_link_xpath = f"/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id-scroll_down_constant}]/td[1]/div/a[1]"
                                 wait.until(EC.element_to_be_clickable((By.XPATH,scroll_down_link_xpath)))
@@ -268,16 +260,12 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
                                 kel_link_xpath = f"/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id}]/td[1]/div/a[1]"
                                 kelurahan = driver.find_element(By.XPATH,kel_link_xpath)
                                 kelurahan_name = kelurahan.text
-                                # kelurahan_id = kel_i+(last_kel_id-1)
                                 print('>>->>->>->>',province_name,province_id,'/',kabupaten_name,kabupaten_id,'/',kecamatan_name,kecamatan_id,'/',kelurahan_name,kelurahan_id)
                                 time.sleep(0.5)
                                 wait.until(EC.element_to_be_clickable((By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id}]/td')))
                                 row = driver.find_elements(By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kelurahan_id}]/td')
                                 row = [r.text.replace('\n',' ') for r in row]      
-                                try:              
-                                    get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=kecamatan_name,kec_id=kecamatan_id,kel_name=kelurahan_name,kel_id=kelurahan_id,row=row,vote_data=vote_data,scroll=True)
-                                except:
-                                    print('ERROR:',row)
+                                get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=kecamatan_name,kec_id=kecamatan_id,kel_name=kelurahan_name,kel_id=kelurahan_id,row=row,vote_data=vote_data,scroll=True)
                         driver.back()
                         continue
                     driver.back()
@@ -297,10 +285,7 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
                         wait.until(EC.element_to_be_clickable((By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kabupaten_id}]/td')))
                         row = driver.find_elements(By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kabupaten_id}]/td')
                         row = [r.text.replace('\n',' ') for r in row]          
-                        try:          
-                            get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=None,kec_id=None,kel_name=None,kel_id=None,row=row,vote_data=vote_data,scroll=False)
-                        except:
-                            print('ERROR:',row)
+                        get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=None,kec_id=None,kel_name=None,kel_id=None,row=row,vote_data=vote_data,scroll=False)
                     else:
                         scroll_down_link_xpath = f"/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kabupaten_id-scroll_down_constant}]/td[1]/div/a[1]"
                         wait.until(EC.element_to_be_clickable((By.XPATH,scroll_down_link_xpath)))
@@ -315,10 +300,7 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
                         wait.until(EC.element_to_be_clickable((By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kabupaten_id}]/td')))
                         row = driver.find_elements(By.XPATH,f'/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-hierarchy/div/main/table/tbody/tr[{kabupaten_id}]/td')
                         row = [r.text.replace('\n',' ') for r in row]          
-                        try:          
-                            get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=None,kec_id=None,kel_name=None,kel_id=None,row=row,vote_data=vote_data,scroll=True)
-                        except:
-                            print('ERROR:',row)
+                        get_table_data(prov_name=province_name,prov_id=province_id,kab_name=kabupaten_name,kab_id=kabupaten_id,kec_name=None,kec_id=None,kel_name=None,kel_id=None,row=row,vote_data=vote_data,scroll=True)
                 driver.back()
                 continue    
             driver.back()
@@ -326,21 +308,23 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
     except:
         print('stopped')
     finally:
+        print("len vote_data:",len(vote_data))
         if len(vote_data)!=0:
             try:
-                prev_df = pd.read_csv('kawalpemilu.csv')
+                prev_df = pd.read_csv('kawalpemilu2024.csv')
                 kawal_pemilu_df = pd.DataFrame(vote_data,columns=['prov_name','prov_id','kab_name','kab_id','kec_name','kec_id','kel_name','kel_id','paslon1','paslon1_perc','paslon2','paslon2_perc','paslon3','paslon3_perc','tot_tps_foto_approved_kawal_pemilu','tot_tps','tps_coverage_perc'])
                 new_df = pd.concat([prev_df,kawal_pemilu_df])
                 new_df = new_df.drop_duplicates() # removing duplicates row
-                new_df.to_csv('kawalpemilu.csv',index=False)
-            except: # if there is no kawalpemilu.csv file yet in your directory (when you first time running with cloning kawalpemilu.csv)
+                new_df.to_csv('kawalpemilu2024.csv',index=False)
+            except: # if there is no kawalpemilu2024.csv file yet in your directory (when you first time running with cloning kawalpemilu2024.csv)
                 kawal_pemilu_df = pd.DataFrame(vote_data,columns=['prov_name','prov_id','kab_name','kab_id','kec_name','kec_id','kel_name','kel_id','paslon1','paslon1_perc','paslon2','paslon2_perc','paslon3','paslon3_perc','tot_tps_foto_approved_kawal_pemilu','tot_tps','tps_coverage_perc'])
                 new_df = pd.concat([prev_df,kawal_pemilu_df])
                 new_df = new_df.drop_duplicates() # removing duplicates row
-                new_df.to_csv('kawalpemilu.csv',index=False)
+                new_df.to_csv('kawalpemilu2024.csv',index=False)
         rt = time.time() - st
         print(f'runtime: {rt/60} mins')
     return new_df
+
 
 
 ## Determine starting location you want to scrape, if all variable is assign to 1 then it will start from very begining ##
@@ -356,7 +340,7 @@ def main(vote_data=[],last_prov_id=1,last_kab_id=1,last_kec_id=1,last_kel_id=1,s
 # last_kel_id = 4
 
 if __name__ == "__main__":
-    last_prov_id = 2
+    last_prov_id = 1
     last_kab_id = 1
     last_kec_id = 1
     last_kel_id = 1
