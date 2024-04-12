@@ -67,8 +67,8 @@
 
   <div class="info">
     <h4>Resuming a stopped scrape</h4>
-    <p>If the code stops mid-scrape, check the last row in your `kawalpemilu.csv` file. Modify the variables `last_prov_id`, `last_kab_id`, `last_kec_id`, and `last_kel_id` to the desired starting point. Remember these variables correspond to the location order (Province, Kabupaten, Kecamatan, Kelurahan) and start numbering from 1.</p>
-    <p>Here's an example: If the last scraped data in `kawalpemilu.csv` is:</p>
+    <p>If the code stops mid-scrape, check the last row in your `kawalpemilu2024.csv` file. Modify the variables `last_prov_id`, `last_kab_id`, `last_kec_id`, and `last_kel_id` to the desired starting point. Remember these variables correspond to the location order (Province, Kabupaten, Kecamatan, Kelurahan) and start numbering from 1.</p>
+    <p>Here's an example: If the last scraped data in `kawalpemilu2024.csv` is:</p>
     <table>
       <tr>
         <th>prov_name</th>
@@ -105,7 +105,7 @@
   <h2 id="others">Others</h2>
   <ul>
     <li>If you encounter "element not found" errors when elements are present on the website, try modifying the `scroll_down_constant` variable or the sleep time in specific code blocks.</li>
-    <li>Please be carefull, `kawalpemilu.csv` in this directory is unfinished but it is real scraped data. I recommend to start your own data scraping.</li>
+    <li>Please be carefull, `kawalpemilu2024.csv` in this directory is unfinished but it is real scraped data. I recommend to start your own data scraping.</li>
   </ul>
 </body>
 </html>
