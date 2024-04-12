@@ -105,7 +105,7 @@
   <h2 id="others">Others</h2>
   <ul>
     <li>If you encounter "element not found" errors when elements are present on the website, try modifying the `scroll_down_constant` variable or the sleep time in specific code blocks.</li>
-    <li>Please be carefull, `kawalpemilu2024.csv` in this directory is unfinished but it is real scraped data. I recommend to start your own data scraping.</li>
+    <li>The file kawalpemilu2024.csv in this directory may contain unfinished scraped data, although it is genuine. It's recommended that you scrape your own data to ensure completeness.</li>
   </ul>
 </body>
 </html>
